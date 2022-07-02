@@ -1,0 +1,205 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+Rails:
+  Enabled: true
+
+AllCops:
+  EnabledByDefault: false
+  NewCops: disable
+  DisplayCopNames: true
+  TargetRubyVersion: ~
+  Exclude:
+    - '.git/**/*'
+    - 'bin/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'Guardfile'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+
+#################### Rails ###############################
+
+Rails/Date:
+  Description: >-
+                  Checks the correct usage of date aware methods,
+                  such as Date.today, Date.current etc.
+  Enabled: true
+
+Rails/TimeZone:
+  Description: 'Checks the correct usage of time zone aware methods.'
+  StyleGuide: 'https://github.com/rubocop-hq/rails-style-guide#time'
+  Reference: 'http://danilenko.org/2012/7/6/rails_timezones'
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  Description: >-
+                 Use methods that skips model validations with caution.
+                 See reference for more information.
+  Reference: 'https://guides.rubyonrails.org/active_record_validations.html#skipping-validations'
+  Enabled: true
+  Exclude:
+    - 'lib/tasks/import_calculeo_users.rake'
+
+Rails/HasManyOrHasOneDependent:
+  Description: "This cop looks for `has_many` or `has_one` associations that don't specify a `:dependent` option. It doesn't register an offense if `:through` option was specified."
+  Enabled: true
+
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+#################### Metrics ###############################
+
+Metrics/AbcSize:
+  Description: >-
+                 A calculated magnitude based on number of assignments,
+                 branches, and conditions.
+  Reference: 'http://c2.com/cgi/wiki?AbcMetric'
+  Enabled: true
+  Max: 30
+
+Metrics/BlockLength:
+  Description: 'Avoid blocks longer than 100 lines of code.'
+  Max: 100
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 250 lines of code.'
+  Max: 250
+
+Metrics/CyclomaticComplexity:
+  Description: 'Avoid cyclomatic complexity of methods higher than the configured maximum.'
+  Max: 10
+
+Metrics/MethodLength:
+  Description: 'Avoid methods longer than 50 lines of code.'
+  StyleGuide: '#short-methods'
+  Max: 50
+
+Metrics/ModuleLength:
+  Description: 'Avoid modules longer than 250 lines of code.'
+  Max: 250
+
+Metrics/PerceivedComplexity:
+  Description: 'Avoid complexity experiences when the reader is looking at a method.'
+  Max: 10
+
+#################### Layout ###############################
+
+Layout/EmptyLineBetweenDefs:
+  Description: 'Use empty lines between defs.'
+  StyleGuide: '#empty-lines-between-methods'
+  AllowAdjacentOneLineDefs: true
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines_except_namespace
+
+Layout/EmptyLinesAroundModuleBody:
+  EnforcedStyle: empty_lines_except_namespace
+
+Layout/LineLength:
+  Description: 'Limit lines to 120 characters.'
+  StyleGuide: '#80-character-limits'
+  Max: 120
+
+Layout/MultilineMethodCallIndentation:
+  Description: >-
+                 Checks indentation of method calls with the dot operator
+                 that span more than one line.
+  EnforcedStyle: indented
+
+Layout/ExtraSpacing:
+  Description: Do not use unnecessary spacing.
+  AllowForAlignment: false
+  ForceEqualSignAlignment: false
+
+Layout/ParameterAlignment:
+  Description: >-
+                 Align the parameters of a method call if they span more
+                 than one line.
+  StyleGuide: '#no-double-indent'
+  EnforcedStyle: with_fixed_indentation
+
+#################### Style ###############################
+
+Style/AsciiComments:
+  Description: 'Use only ascii symbols in comments.'
+  StyleGuide: '#english-comments'
+  Enabled: true
+  AllowedChars: []
+
+Style/ClassAndModuleChildren:
+  Description: 'Checks style of children classes and modules.'
+  StyleGuide: '#namespace-definition'
+  EnforcedStyle: nested
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/EmptyMethod:
+  Description: 'Checks the formatting of empty method definitions.'
+  StyleGuide: '#no-single-line-methods'
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  # If `true`, strings which span multiple lines using `\` for continuation must
+  # use the same type of quotes on each line.
+  ConsistentQuotesInMultiline: false
+
+Style/FrozenStringLiteralComment:
+  Description: >-
+                  Add the frozen_string_literal comment to the top of files
+                  to help transition from Ruby 2.3.0 to Ruby 3.0.
+  EnforcedStyle: never
+  Enabled: true
+  SupportedStyles:
+    # `when_needed` will add the frozen string literal comment to files
+    # only when the `TargetRubyVersion` is set to 2.3+.
+    - when_needed
+    # `always` will always add the frozen string literal comment to a file
+    # regardless of the Ruby version or if `freeze` or `<<` are called on a
+    # string literal. If you run code against multiple versions of Ruby, it is
+    # possible that this will create errors in Ruby 2.3.0+.
+    - always
+    # `never` will enforce that the frozen string literal comment does not
+    # exist in a file.
+    - never
+
+Style/HashEachMethods:
+  Description: 'Use Hash#each_key and Hash#each_value.'
+  StyleGuide: '#hash-each'
+  Enabled: true
+  VersionAdded: '0.80'
+  Safe: false
+
+Style/HashTransformKeys:
+  Description: 'Prefer `transform_keys` over `each_with_object` and `map`.'
+  Enabled: true
+  VersionAdded: '0.80'
+  Safe: false
+
+Style/HashTransformValues:
+  Description: 'Prefer `transform_values` over `each_with_object` and `map`.'
+  Enabled: true
+  VersionAdded: '0.80'
+  Safe: false
+
+Style/Lambda:
+  Description: 'Use the new lambda literal syntax for single-line blocks.'
+  StyleGuide: '#lambda-multi-line'
+  EnforcedStyle: literal
+
+Style/SingleLineBlockParams:
+  Description: 'Enforces the names of some block params.'
+  Enabled: true
+
+Style/SymbolArray:
+  Description: 'Use %i or %I for arrays of symbols.'
+  StyleGuide: '#percent-i'
+  Enabled: true
