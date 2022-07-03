@@ -12,6 +12,7 @@ RUN mkdir /sportsball
 WORKDIR /sportsball
 
 COPY Gemfile* ./
+COPY components/ /sportsball/components/
 
 RUN gem install bundler
 RUN bundle install
