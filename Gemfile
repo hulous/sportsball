@@ -6,13 +6,11 @@ gem "rails", "~> 6.0.4.8"
 # Postgres
 gem "pg", "1.2.3"
 
-# gem "bootstrap", require: false
 gem "dotenv-rails"
 gem "jbuilder"
 gem "jquery-rails"
 gem "net-smtp"
 gem "puma"
-# gem "sass-rails"
 gem "turbolinks"
 gem 'webpacker'
 
