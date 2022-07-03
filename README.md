@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a component based rails app.
 
-Things you may want to cover:
+## Local installation:
 
-* Ruby version
+ - Copy/past env.local.sample as env.local
+ - Edit env.local with the good creds for you.
+ - Run the `make build` command
+ - Run the `make bash` command and run `bundle exec rails db:create`
+ - Run `make up`
+ - Check localhost:3003
 
-* System dependencies
+## Make command
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run `make help` for display all available commands and infos
