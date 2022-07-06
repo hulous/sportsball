@@ -40,6 +40,8 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
 
+  gem 'cobradeps'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -55,4 +57,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # This app components:
-gem 'app_component', path: 'components/app_component'
+gem 'app_component', path: 'components/app_component', group: %i[default direct]

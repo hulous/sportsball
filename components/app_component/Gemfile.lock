@@ -83,6 +83,7 @@ GEM
     nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     pg (1.4.1)
+    psych (3.3.2)
     racc (1.6.0)
     rack (2.2.4)
     rack-test (2.0.2)
@@ -136,6 +137,7 @@ PLATFORMS
 DEPENDENCIES
   app_component!
   pg
+  psych (< 4)
 
 BUNDLED WITH
    2.2.3
