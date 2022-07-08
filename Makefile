@@ -2,58 +2,58 @@ APPLICATION_NAME = sportsball
 WEB_CONTAINER_NAME = sportsball-web
 .DEFAULT_GOAL := help
 
-# Docker stuff
+# podman stuff
 attach: ## Attach running web container to see logs
-	docker attach $(APPLICATION_NAME)_$(WEB_CONTAINER_NAME)_1
+	podman attach $(APPLICATION_NAME)_$(WEB_CONTAINER_NAME)_1
 
 up: ## Run containers
-	docker compose up -d
+	podman-compose up -d
 
 down: ## Stop containers
-	docker compose down
+	podman-compose down
 
 serve: up ## Run Serve
 	make attach
 
 ps: ## List containers
-	docker compose ps
+	podman-compose ps
 
 restart_web: ## Restart Web container
-	docker compose restart $(WEB_CONTAINER_NAME)
+	podman-compose restart $(WEB_CONTAINER_NAME)
 
 # Build containers
 build: ## Build containers
-	docker compose build
+	podman-compose build
 
-clean: down ## Cleanup docker images.
-	docker system prune -a
+clean: down ## Cleanup podman images.
+	podman system prune -a
 
-rebuild: clean ## Stop containers, delete docker images not used and build container
+rebuild: clean ## Stop containers, delete podman images not used and build container
 	make build
 
 # Rails install tools
 bundle: ## Run bundle install
-	docker compose run --rm $(WEB_CONTAINER_NAME) bundle install
+	podman-compose run --rm $(WEB_CONTAINER_NAME) bundle install
 
 migrate: ## Run rake db migrate
-	docker compose run --rm $(WEB_CONTAINER_NAME) bundle exec rake db:migrate
+	podman-compose run --rm $(WEB_CONTAINER_NAME) bundle exec rake db:migrate
 
 # Devs console
 bash: ## Run bash in web-container
-	docker compose run --rm $(WEB_CONTAINER_NAME) bash
+	podman-compose run --rm $(WEB_CONTAINER_NAME) bash
 
 console: ## Run Rails console
-	docker compose run --rm $(WEB_CONTAINER_NAME) bundle exec rails c
+	podman-compose run --rm $(WEB_CONTAINER_NAME) bundle exec rails c
 
 # Code smells tools
 guard: up ## Run project guard (in running container)
-	docker compose exec $(WEB_CONTAINER_NAME) bundle exec guard
+	podman-compose exec $(WEB_CONTAINER_NAME) bundle exec guard
 
 sniff: ## Run code smelling tools (rubocop only for now)
-	docker compose run --rm $(WEB_CONTAINER_NAME) bundle exec rubocop .
+	podman-compose run --rm $(WEB_CONTAINER_NAME) bundle exec rubocop .
 
 tests: ## Run test locally in web container (with failfast and code coverage option)
-	docker compose run -e FAILFAST=true -e COVERAGE=true --rm $(WEB_CONTAINER_NAME) bundle exec rspec .
+	podman-compose run -e FAILFAST=true -e COVERAGE=true --rm $(WEB_CONTAINER_NAME) bundle exec rspec .
 
 .PHONY: help
 
