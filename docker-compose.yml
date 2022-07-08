@@ -3,7 +3,7 @@ version: '3'
 services:
 
   sportsball-db:
-    image: postgres:11
+    image: docker.io/library/postgres:11
     ports:
       - "5434:5432"
     volumes:

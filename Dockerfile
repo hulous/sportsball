@@ -1,4 +1,4 @@
-FROM ruby:3.1.2-buster AS img_base
+FROM docker.io/library/ruby:3.1.2-buster AS img_base
 
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   nodejs \
