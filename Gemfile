@@ -57,4 +57,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # This app components:
-gem 'app_component', path: 'components/app_component', group: %i[default direct]
+path 'components' do
+  gem 'app_component'
+end
