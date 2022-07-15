@@ -1,7 +1,7 @@
 # This migration comes from app_component (originally 20220706195507)
-class CreateAppComponentGames < ActiveRecord::Migration[6.0]
+class CreateAppComponentGamesAppComponent < ActiveRecord::Migration[6.0]
   def change
-    create_table :app_component_games do |t|
+    create_table :app_component_games, if_not_exists: true do |t|
       t.datetime :date
       t.string :location
       t.integer :first_team_id
