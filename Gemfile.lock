@@ -1,9 +1,17 @@
+GIT
+  remote: https://github.com/benjaminleesmith/trueskill
+  revision: e404f45af5b3fb86982881ce064a9c764cc6a901
+  ref: e404f45af5b3fb86982881ce064a9c764cc6a901
+  specs:
+    trueskill (1.0.0)
+
 PATH
   remote: components
   specs:
     app_component (0.1.0)
       rails (~> 6.0.4, >= 6.0.4.8)
       slim-rails
+      trueskill
 
 GEM
   remote: https://rubygems.org/
@@ -343,6 +351,7 @@ DEPENDENCIES
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
+  trueskill!
   turbolinks
   tzinfo-data
   web-console (>= 3.3.0)
