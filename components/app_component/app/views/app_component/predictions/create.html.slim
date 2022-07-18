@@ -1,0 +1,6 @@
+h1 Predictions
+
+= prediction_text(@prediction.first_team, @prediction.second_team, @prediction.winner)
+
+.actions
+  = link_to("Try Again!", new_prediction_path, class: "button")
