@@ -12,10 +12,9 @@ gem "jquery-rails"
 gem "net-smtp"
 gem "puma"
 gem "turbolinks"
-gem 'webpacker'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap"
+gem "bootsnap", require: false
 gem "psych", "< 4"
 
 group :development, :test do
